@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F9DA44FE1CBFE08E00455B6F"
-               BuildableName = "weathertest.app"
-               BlueprintName = "weathertest"
-               ReferencedContainer = "container:weathertest.xcodeproj">
+               BlueprintIdentifier = "F9DA455E1CC12CC300455B6F"
+               BuildableName = "WeatherObserver.app"
+               BlueprintName = "WeatherObserver"
+               ReferencedContainer = "container:WeatherObserver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,24 +28,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F9DA45121CBFE08F00455B6F"
-               BuildableName = "weathertestTests.xctest"
-               BlueprintName = "weathertestTests"
-               ReferencedContainer = "container:weathertest.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F9DA44FE1CBFE08E00455B6F"
-            BuildableName = "weathertest.app"
-            BlueprintName = "weathertest"
-            ReferencedContainer = "container:weathertest.xcodeproj">
+            BlueprintIdentifier = "F9DA455E1CC12CC300455B6F"
+            BuildableName = "WeatherObserver.app"
+            BlueprintName = "WeatherObserver"
+            ReferencedContainer = "container:WeatherObserver.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F9DA44FE1CBFE08E00455B6F"
-            BuildableName = "weathertest.app"
-            BlueprintName = "weathertest"
-            ReferencedContainer = "container:weathertest.xcodeproj">
+            BlueprintIdentifier = "F9DA455E1CC12CC300455B6F"
+            BuildableName = "WeatherObserver.app"
+            BlueprintName = "WeatherObserver"
+            ReferencedContainer = "container:WeatherObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -84,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F9DA44FE1CBFE08E00455B6F"
-            BuildableName = "weathertest.app"
-            BlueprintName = "weathertest"
-            ReferencedContainer = "container:weathertest.xcodeproj">
+            BlueprintIdentifier = "F9DA455E1CC12CC300455B6F"
+            BuildableName = "WeatherObserver.app"
+            BlueprintName = "WeatherObserver"
+            ReferencedContainer = "container:WeatherObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

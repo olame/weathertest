@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>weathertest.xcscheme</key>
+		<key>WeatherObserver.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>F9DA44FE1CBFE08E00455B6F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F9DA45121CBFE08F00455B6F</key>
+		<key>F9DA455E1CC12CC300455B6F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
