@@ -10,12 +10,12 @@ import UIKit
 
 class CitiesViewController: UITableViewController {
 
-    let possibleCities = [City.Moscow, City.Astrakhan, City.SaintPetersburg]
+    var possibleCities = [City.Moscow, City.Astrakhan, City.SaintPetersburg]
     
     var detailViewController: WeatherInfoViewController? = nil
     var cities = [City]()
     
-    let weather: [City : WeatherInfo] = [City.Moscow : WeatherInfo(description: "The weather is beatiful"), City.SaintPetersburg: WeatherInfo(description: "Rainy")]
+    let weather: [City : WeatherInfo] = [City.Moscow : WeatherInfo(description: "The weather is beatiful"), City.SaintPetersburg: WeatherInfo(description: "Rainy"), City.Astrakhan: WeatherInfo(description: "Warm")]
 
 
     override func viewDidLoad() {
@@ -42,7 +42,15 @@ class CitiesViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        cities.insert(City.Moscow, atIndex: 0)
+        
+        if let nextCity = possibleCities.first {
+            
+            possibleCities.removeAtIndex(0)
+            cities.insert(nextCity, atIndex: 0)
+            
+        }
+        checkAddCityButtonState()
+        
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
@@ -86,13 +94,20 @@ class CitiesViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            cities.removeAtIndex(indexPath.row)
+            let city = cities.removeAtIndex(indexPath.row)
+            possibleCities.append(city)
+            checkAddCityButtonState()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
 
+    
+    func checkAddCityButtonState(){
+        
+        self.navigationItem.rightBarButtonItem?.enabled = possibleCities.count > 0 ? true : false
+    }
 
 }
 

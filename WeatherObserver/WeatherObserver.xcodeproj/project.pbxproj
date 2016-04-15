@@ -62,14 +62,12 @@
 		F9DA45611CC12CC300455B6F /* WeatherObserver */ = {
 			isa = PBXGroup;
 			children = (
+				F9DA457D1CC13A0600455B6F /* Assets */,
 				F9DA457C1CC130A000455B6F /* Controllers */,
 				F9DA45761CC12DDE00455B6F /* Defines.swift */,
 				F9DA45771CC12DDE00455B6F /* WeatherDataProvider.swift */,
 				F9DA45781CC12DDE00455B6F /* WeatherInfo.swift */,
 				F9DA45621CC12CC300455B6F /* AppDelegate.swift */,
-				F9DA45681CC12CC300455B6F /* Main.storyboard */,
-				F9DA456B1CC12CC300455B6F /* Assets.xcassets */,
-				F9DA456D1CC12CC300455B6F /* LaunchScreen.storyboard */,
 				F9DA45701CC12CC300455B6F /* Info.plist */,
 			);
 			path = WeatherObserver;
@@ -82,6 +80,16 @@
 				F9DA45641CC12CC300455B6F /* CitiesViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F9DA457D1CC13A0600455B6F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA456D1CC12CC300455B6F /* LaunchScreen.storyboard */,
+				F9DA456B1CC12CC300455B6F /* Assets.xcassets */,
+				F9DA45681CC12CC300455B6F /* Main.storyboard */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
