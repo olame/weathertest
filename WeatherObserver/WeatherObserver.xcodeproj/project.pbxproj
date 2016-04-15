@@ -16,6 +16,7 @@
 		F9DA45791CC12DDE00455B6F /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA45761CC12DDE00455B6F /* Defines.swift */; };
 		F9DA457A1CC12DDE00455B6F /* WeatherDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA45771CC12DDE00455B6F /* WeatherDataProvider.swift */; };
 		F9DA457B1CC12DDE00455B6F /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA45781CC12DDE00455B6F /* WeatherInfo.swift */; };
+		F9DA457F1CC194B100455B6F /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA457E1CC194B100455B6F /* JsonParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F9DA45761CC12DDE00455B6F /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		F9DA45771CC12DDE00455B6F /* WeatherDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataProvider.swift; sourceTree = "<group>"; };
 		F9DA45781CC12DDE00455B6F /* WeatherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
+		F9DA457E1CC194B100455B6F /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				F9DA45781CC12DDE00455B6F /* WeatherInfo.swift */,
 				F9DA45621CC12CC300455B6F /* AppDelegate.swift */,
 				F9DA45701CC12CC300455B6F /* Info.plist */,
+				F9DA457E1CC194B100455B6F /* JsonParser.swift */,
 			);
 			path = WeatherObserver;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				F9DA457B1CC12DDE00455B6F /* WeatherInfo.swift in Sources */,
 				F9DA45651CC12CC300455B6F /* CitiesViewController.swift in Sources */,
 				F9DA45791CC12DDE00455B6F /* Defines.swift in Sources */,
+				F9DA457F1CC194B100455B6F /* JsonParser.swift in Sources */,
 				F9DA45631CC12CC300455B6F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

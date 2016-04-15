@@ -10,6 +10,8 @@ import UIKit
 
 class CitiesViewController: UITableViewController {
 
+    private var dataProvider: WeatherDataProviderProtocol?
+    
     var detailViewController: WeatherInfoViewController? = nil
     var cities = [City.Moscow, City.SaintPetersburg, City.Astrakhan, City.Chelyabinsk, City.Cherepovets, City.Izhevsk, City.NizhniyNovgorod, City.RespublikaKareliya, City.Nakhodka, City.Taganrog, City.Tver]
     
@@ -29,6 +31,24 @@ class CitiesViewController: UITableViewController {
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? WeatherInfoViewController
+        }
+        
+        //start to load data
+        if dataProvider == nil {
+            
+            dataProvider = WeatherDataProvider()
+        }
+        
+        dataProvider?.getCurrentWeather([11]){
+            (result, status) in
+            
+            dispatch_async(dispatch_get_main_queue()){
+                switch status {
+                case StatusCode.Success: break
+                
+                default: break
+                }
+            }
         }
     }
 

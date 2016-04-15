@@ -41,3 +41,14 @@ enum City : Int {
         }
     }
 }
+
+enum StatusCode: Int {
+    
+    case Success = 200
+    case BadRequest = 400
+    case Unauthorized = 401
+    case NotFound = 404
+    case UnknownErorr = 1000
+    case NoData = 1001
+    case BadData = 1002
+}
