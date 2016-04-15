@@ -17,6 +17,9 @@ enum City : Int {
     case Astrakhan = 580497
     case Tver = 480060
     case Cherepovets = 569223
+    case Izhevsk = 554840
+    case Nakhodka = 2019528
+    case Taganrog = 484907
     
     func name() -> String {
         
@@ -28,6 +31,11 @@ enum City : Int {
         case .Chelyabinsk: return "Chelyabinsk"
         case .Cherepovets: return "Cherepovets"
         case .Tver: return "Tver"
+        case .RespublikaKareliya: return "Respublika Kareliya"
+        case .Izhevsk: return "Izhevsk"
+        case .Nakhodka: return "Nakhodka"
+        case .NizhniyNovgorod: return "Nizhniy Novgorod"
+        case .Taganrog: return "Taganrog"
             
         default: return ""
         }
