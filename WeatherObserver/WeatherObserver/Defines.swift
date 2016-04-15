@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum Cities : Int {
+enum City : Int {
     
     case Moscow = 524901
     case SaintPetersburg = 498817

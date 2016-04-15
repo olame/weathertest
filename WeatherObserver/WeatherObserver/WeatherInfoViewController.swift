@@ -8,12 +8,12 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class WeatherInfoViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
 
-    var detailItem: AnyObject? {
+    var detailItem: WeatherInfo? {
         didSet {
             // Update the view.
             self.configureView()

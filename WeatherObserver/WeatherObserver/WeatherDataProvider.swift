@@ -27,7 +27,7 @@ class WeatherDataProvider : WeatherDataProviderProtocol {
     }
     
     func getCurrentWeather(cityId: Int) -> WeatherInfo {
-        return WeatherInfo()
+        return WeatherInfo(description: "mama")
     }
 }
 
