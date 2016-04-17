@@ -28,14 +28,13 @@ class JsonParser {
                 guard let weathers = c[FirstLevelNames.WeatherDesc.rawValue] as? NSArray else {return result}
                 
                 let descs: [String] = weathers.map(getWeatherDescription)
-                
-                var weatherDescription = descs.joinWithSeparator(", ")
+                let weatherDescription = descs.joinWithSeparator(", ")
                 
                 
                 if let city = City(rawValue: id){
                     //parsing here
 
-                    var weatherInfo = WeatherInfo(description: weatherDescription)
+                    let weatherInfo = WeatherInfo(description: weatherDescription)
                     result[city] = weatherInfo
 
                     if let common = c[FirstLevelNames.Common.rawValue] as? NSDictionary {

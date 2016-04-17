@@ -95,8 +95,8 @@
 				F9DA45801CC2E31C00455B6F /* Utility */,
 				F9DA457D1CC13A0600455B6F /* Assets */,
 				F9DA457C1CC130A000455B6F /* Controllers */,
-				F9DA45771CC12DDE00455B6F /* WeatherDataProvider.swift */,
 				F9DA45781CC12DDE00455B6F /* WeatherInfo.swift */,
+				F9DA45771CC12DDE00455B6F /* WeatherDataProvider.swift */,
 				F9DA45621CC12CC300455B6F /* AppDelegate.swift */,
 			);
 			path = WeatherObserver;

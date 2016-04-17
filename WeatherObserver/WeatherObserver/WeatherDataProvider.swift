@@ -40,7 +40,12 @@ class WeatherDataProvider : WeatherDataProviderProtocol {
             d, r, e in
             
             if let error = e?.code {
-                
+                switch error {
+                    case NSURLError.NotConnectedToInternet.rawValue, NSURLError.TimedOut.rawValue:
+                        completion(data: nil, status: StatusCode.NoInternet)
+                        break
+                    default: break
+                }
                 if let status = StatusCode(rawValue: error) {
                     completion(data: nil, status: status)
                 }
@@ -65,6 +70,8 @@ class WeatherDataProvider : WeatherDataProviderProtocol {
                 
                 print(data)
                 completion(data: data, status: StatusCode(rawValue: code)!)
+                
+                
             }
             else {
                 completion(data: nil, status: StatusCode.BadData)

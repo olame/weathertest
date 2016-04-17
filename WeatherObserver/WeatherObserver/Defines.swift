@@ -7,6 +7,12 @@
 //
 
 import Foundation
+enum UIMessages: String {
+    case NoInternetConnection = "It seems no internet connection on device. Try later."
+    case UnknownError = "Unknown error during network communication. Try again"
+}
+
+
 enum City : Int {
     
     case Moscow = 524901
@@ -36,8 +42,7 @@ enum City : Int {
         case .Nakhodka: return "Nakhodka"
         case .NizhniyNovgorod: return "Nizhniy Novgorod"
         case .Taganrog: return "Taganrog"
-            
-        default: return ""
+        
         }
     }
 }
@@ -46,11 +51,12 @@ enum StatusCode: Int {
     
     case Success = 200
     case BadRequest = 400
-    case Unauthorized = 401
     case NotFound = 404
     case UnknownErorr = 1000
     case NoData = 1001
     case BadData = 1002
+    case NoInternet = 1003
+    
 }
 
 enum FirstLevelNames: String {

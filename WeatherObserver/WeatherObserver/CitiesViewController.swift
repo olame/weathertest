@@ -49,13 +49,32 @@ class CitiesViewController: UITableViewController {
             dispatch_async(dispatch_get_main_queue()){
                 switch status {
                     case StatusCode.Success:
-                    
                         self.weather = self.jsonParser?.getParsed(result!)
+                    case StatusCode.NoInternet:
+                        self.showAlert(UIMessages.NoInternetConnection.rawValue)
+                    
+                    case StatusCode.UnknownErorr:
+                        self.showAlert(UIMessages.UnknownError.rawValue)
                     
                     default: break
                 }
             }
         }
+    }
+
+    private func showAlert(message: String){
+        let alertController = UIAlertController(title: "Info", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+        //Delay the dismissal by 1 seconds
+        let delay = 3.0 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        
+        dispatch_after(time, dispatch_get_main_queue(), {
+            alertController.dismissViewControllerAnimated(false, completion: nil)
+        })
+    
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -74,7 +93,7 @@ class CitiesViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let city = cities[indexPath.row] as! City
+                let city = cities[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! WeatherInfoViewController
                 controller.detailItem = weather?[city]
             }
@@ -94,7 +113,7 @@ class CitiesViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        let city = cities[indexPath.row] as! City
+        let city = cities[indexPath.row] 
         cell.textLabel!.text = city.name()
         return cell
     }
