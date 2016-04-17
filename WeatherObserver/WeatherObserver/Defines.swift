@@ -28,20 +28,10 @@ enum City : Int {
     case Nakhodka = 2019528
     case Taganrog = 484907
     
+
     func name() -> String {
-        switch self {
-        case .Moscow: return "Moscow"
-        case .SaintPetersburg: return "Saint Petersburg"
-        case .Astrakhan: return "Astrakhan"
-        case .Chelyabinsk: return "Chelyabinsk"
-        case .Cherepovets: return "Cherepovets"
-        case .Tver: return "Tver"
-        case .RespublikaKareliya: return "Respublika Kareliya"
-        case .Izhevsk: return "Izhevsk"
-        case .Nakhodka: return "Nakhodka"
-        case .NizhniyNovgorod: return "Nizhniy Novgorod"
-        case .Taganrog: return "Taganrog"
-        }
+        let names: [City:String] = [.Moscow: "Moscow", .SaintPetersburg: "Saint Petersburg", .Astrakhan: "Astrakhan", .Chelyabinsk: "Chelyabinsk", .Cherepovets: "Cherepovets", .Tver: "Tver", .RespublikaKareliya: "Respublika Kareliya", .Izhevsk: "Izhevsk", .Nakhodka: "Nakhodka", .NizhniyNovgorod: "Nizhniy Novgorod", .Taganrog: "Taganrog"]
+        return names[self] ?? ""
     }
 }
 
