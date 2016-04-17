@@ -8,36 +8,32 @@
 
 import Foundation
 class JsonParser {
-    
     private func getWeatherDescription(w: AnyObject) -> String {
-        
         guard let weather = w as? NSDictionary,let desc = weather[WeatherNames.Description.rawValue] as? String else {return ""}
         return desc.capitalizedString
     }
     
-    func getParsed(data: [String : AnyObject]) -> [City : WeatherInfo] {
-        
+    func getParsed(data: [String : AnyObject], completion: () -> Void) -> [City : WeatherInfo]? {
         var result = [City: WeatherInfo]()
         
-        if let list = data["list"] as? NSArray {
-            
-            for c in list {
-                
-                guard let id = c[FirstLevelNames.Id.rawValue] as? Int else { return result }
-                
-                guard let weathers = c[FirstLevelNames.WeatherDesc.rawValue] as? NSArray else {return result}
+        if let data = data["list"] as? NSArray {
+            for cityData in data {
+                guard let id = cityData[FirstLevelNames.Id.rawValue] as? Int else {
+                    completion()
+                    return nil
+                }
+                guard let weathers = cityData[FirstLevelNames.WeatherDesc.rawValue] as? NSArray else {
+                    completion()
+                    return nil
+                }
                 
                 let descs: [String] = weathers.map(getWeatherDescription)
                 let weatherDescription = descs.joinWithSeparator(", ")
                 
-                
                 if let city = City(rawValue: id){
-                    //parsing here
-
-                    let weatherInfo = WeatherInfo(description: weatherDescription)
-                    result[city] = weatherInfo
-
-                    if let common = c[FirstLevelNames.Common.rawValue] as? NSDictionary {
+                    var weatherInfo = WeatherInfo(description: weatherDescription)
+                    
+                    if let common = cityData[FirstLevelNames.Common.rawValue] as? NSDictionary {
                         if let sr = common[CommonNames.SunRise.rawValue] as? Double  {
                             weatherInfo.sunrise = NSDate(timeIntervalSince1970: sr)
                         }
@@ -47,7 +43,7 @@ class JsonParser {
                         }
                     }
                     
-                    if let param = c[FirstLevelNames.Data.rawValue] as? NSDictionary {
+                    if let param = cityData[FirstLevelNames.Data.rawValue] as? NSDictionary {
                         if let pressure = param[DataNames.Pressure.rawValue] as? Double {
                             weatherInfo.pressure = pressure
                         }
@@ -56,12 +52,11 @@ class JsonParser {
                             weatherInfo.temperature = temperature
                         }
                     }
-                
+                    result[city] = weatherInfo
                }
             }
         }
-        
+        completion()
         return result
-        
     }
 }

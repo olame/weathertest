@@ -11,12 +11,11 @@ import UIKit
 class WeatherInfoViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
-
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
+    
     var detailItem: WeatherInfo? {
         didSet {
             // Update the view.
@@ -33,9 +32,6 @@ class WeatherInfoViewController: UIViewController {
     }
 
     func configureView() {
-        // Update the user interface for the detail item.
-        
-        
         if let detail = self.detailItem {
             if let label = self.detailDescriptionLabel {
                 label.text = detail.description
@@ -52,7 +48,6 @@ class WeatherInfoViewController: UIViewController {
             if let sunrise = self.sunriseLabel, let sunriseData = detail.sunrise {
                 sunrise.text = String(sunriseData)
             }
-            
         }
     }
 

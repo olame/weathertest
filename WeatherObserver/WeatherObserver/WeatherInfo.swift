@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class WeatherInfo {
+struct WeatherInfo {
     
     var description: String
     var sunrise: NSDate?
@@ -16,10 +16,8 @@ class WeatherInfo {
     var temperature: Double?
     var pressure: Double?
     
-    
     init(description: String){
         self.description = description
-    }
-    
+    } 
 }
 

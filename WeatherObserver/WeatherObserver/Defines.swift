@@ -9,12 +9,13 @@
 import Foundation
 enum UIMessages: String {
     case NoInternetConnection = "It seems no internet connection on device. Try later."
-    case UnknownError = "Unknown error during network communication. Try again"
+    case BadRequest = "Http error: server does not answer, the bad request was sent."
+    case NotFound = "Http error: server was not found."
+    case UnknownError = "Unknown error during network communication. Try again."
+    case NoData = "No data from server response"
 }
 
-
 enum City : Int {
-    
     case Moscow = 524901
     case SaintPetersburg = 498817
     case RespublikaKareliya = 552548
@@ -28,9 +29,7 @@ enum City : Int {
     case Taganrog = 484907
     
     func name() -> String {
-        
         switch self {
-            
         case .Moscow: return "Moscow"
         case .SaintPetersburg: return "Saint Petersburg"
         case .Astrakhan: return "Astrakhan"
@@ -42,13 +41,11 @@ enum City : Int {
         case .Nakhodka: return "Nakhodka"
         case .NizhniyNovgorod: return "Nizhniy Novgorod"
         case .Taganrog: return "Taganrog"
-        
         }
     }
 }
 
 enum StatusCode: Int {
-    
     case Success = 200
     case BadRequest = 400
     case NotFound = 404
@@ -56,11 +53,9 @@ enum StatusCode: Int {
     case NoData = 1001
     case BadData = 1002
     case NoInternet = 1003
-    
 }
 
 enum FirstLevelNames: String {
-    
     case Id = "id"
     case Name = "name"
     case Clouds = "clouds"
@@ -88,7 +83,6 @@ enum CommonNames : String {
 
 
 enum WeatherNames : String {
-    
     case Description = "description"
     case Main = "main"
 }
