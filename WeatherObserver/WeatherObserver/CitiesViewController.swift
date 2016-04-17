@@ -11,12 +11,13 @@ import UIKit
 class CitiesViewController: UITableViewController {
 
     private var dataProvider: WeatherDataProviderProtocol?
+    private var jsonParser: JsonParser?
     
     var detailViewController: WeatherInfoViewController? = nil
-    var cities = [City.Moscow, City.SaintPetersburg, City.Astrakhan, City.Chelyabinsk, City.Cherepovets, City.Izhevsk, City.NizhniyNovgorod, City.RespublikaKareliya, City.Nakhodka, City.Taganrog, City.Tver]
+    var cities = [City.Moscow, City.SaintPetersburg, City.Astrakhan, City.Chelyabinsk, City.Cherepovets, City.Izhevsk, City.NizhniyNovgorod, City.RespublikaKareliya, City.Nakhodka, City.Taganrog]
     
-    let weather: [City : WeatherInfo] = [City.Moscow : WeatherInfo(description: "The weather is beatiful"), City.SaintPetersburg: WeatherInfo(description: "Rainy"), City.Astrakhan: WeatherInfo(description: "Warm")]
-
+//    let weather: [City : WeatherInfo] = [City.Moscow : WeatherInfo(description: "The weather is beatiful"), City.SaintPetersburg: WeatherInfo(description: "Rainy"), City.Astrakhan: WeatherInfo(description: "Warm")]
+    var weather: [City : WeatherInfo]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,15 +39,20 @@ class CitiesViewController: UITableViewController {
             
             dataProvider = WeatherDataProvider()
         }
+        if jsonParser == nil {
+            jsonParser = JsonParser()
+        }
         
-        dataProvider?.getCurrentWeather([11]){
+        dataProvider?.getCurrentWeather(cities){
             (result, status) in
             
             dispatch_async(dispatch_get_main_queue()){
                 switch status {
-                case StatusCode.Success: break
-                
-                default: break
+                    case StatusCode.Success:
+                    
+                        self.weather = self.jsonParser?.getParsed(result!)
+                    
+                    default: break
                 }
             }
         }
@@ -70,7 +76,7 @@ class CitiesViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let city = cities[indexPath.row] as! City
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! WeatherInfoViewController
-                controller.detailItem = weather[city]
+                controller.detailItem = weather?[city]
             }
         }
     }

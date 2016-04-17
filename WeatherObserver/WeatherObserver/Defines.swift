@@ -12,7 +12,7 @@ enum City : Int {
     case Moscow = 524901
     case SaintPetersburg = 498817
     case RespublikaKareliya = 552548
-    case Chelyabinsk = 150829
+    case Chelyabinsk = 1508291
     case NizhniyNovgorod = 520555
     case Astrakhan = 580497
     case Tver = 480060
@@ -51,4 +51,47 @@ enum StatusCode: Int {
     case UnknownErorr = 1000
     case NoData = 1001
     case BadData = 1002
+}
+
+enum FirstLevelNames: String {
+    
+    case Id = "id"
+    case Name = "name"
+    case Clouds = "clouds"
+    case Coordinates = "coord"
+    case Data = "main"
+    case Common = "sys"
+    case WeatherDesc = "weather"
+    case Wind = "wind"
+    case Rain = "rain"
+}
+
+enum DataNames : String {
+    case Humidity = "humidity"
+    case Pressure = "pressure"
+    case Temperature = "temp"
+    case MaxTemperature = "temp_max"
+    case MinTemperature = "temp_min"
+}
+
+enum CommonNames : String {
+    case Country = "country"
+    case SunRise = "sunrise"
+    case SunSet = "sunset"
+}
+
+
+enum WeatherNames : String {
+    
+    case Description = "description"
+    case Main = "main"
+}
+
+enum WindNames : String {
+    case Degree = "deg"
+    case Speed = "speed"
+}
+
+enum CloudsNames : String {
+    case All = "all"
 }

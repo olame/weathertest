@@ -13,12 +13,11 @@ import Foundation
 
 protocol WeatherDataProviderProtocol {
     
-    func getCurrentWeather(cityId: [Int], completion: (data: [String: AnyObject]?, status: StatusCode) -> Void)
+    func getCurrentWeather(cityId: [City], completion: (data: [String: AnyObject]?, status: StatusCode) -> Void)
 }
 
 class WeatherDataProvider : WeatherDataProviderProtocol {
     
-    private let citiesList = "524901,498817,552548"
     private let baseUrl = "http://api.openweathermap.org/data/2.5/group?id=%@&units=metric&APPID=a8a454dfecd9343f3398acafa692a1a3"
     private let session: NSURLSession?
     
@@ -28,10 +27,12 @@ class WeatherDataProvider : WeatherDataProviderProtocol {
     }
     
     
-    func getCurrentWeather(cityId: [Int], completion: (data: [String: AnyObject]?, status: StatusCode) -> Void) {
+    func getCurrentWeather(cityIds: [City], completion: (data: [String: AnyObject]?, status: StatusCode) -> Void) {
         
-        //insert cities ids concat
-        let relativeURLString = String(format: baseUrl, citiesList)
+        let cities = cityIds.map{return String($0.rawValue)}.joinWithSeparator(",")
+        
+        
+        let relativeURLString = String(format: baseUrl, cities)
         let relativeURL = NSURL(string: relativeURLString)
         
         

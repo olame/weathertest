@@ -2,28 +2,67 @@
 //  JsonParser.swift
 //  WeatherObserver
 //
-//  Created by Olga Grineva on 16/04/16.
+//  Created by Olga Grineva on 17/04/16.
 //  Copyright © 2016 Olga Grineva. All rights reserved.
 //
 
 import Foundation
 class JsonParser {
     
-//    func getParsed(data: NSData) -> [City : WeatherInfo] {
-//        
-//        
-//        
-//    }
+    private func getWeatherDescription(w: AnyObject) -> String {
+        
+        guard let weather = w as? NSDictionary,let desc = weather[WeatherNames.Description.rawValue] as? String else {return ""}
+        return desc.capitalizedString
+    }
     
-    // {"coord":{"lon":139,"lat":35},
-    //    "sys":{"country":"JP","sunrise":1369769524,"sunset":1369821049},
-    //    "weather":[{"id":804,"main":"clouds","description":"overcast clouds","icon":"04n"}],
-    //    "main":{"temp":289.5,"humidity":89,"pressure":1013,"temp_min":287.04,"temp_max":292.04},
-    //    "wind":{"speed":7.31,"deg":187.002},
-    //    "rain":{"3h":0},
-    //    "clouds":{"all":92},
-    //    "dt":1369824698,
-    //    "id":1851632,
-    //    "name":"Shuzenji",
-    //    "cod":200}
+    func getParsed(data: [String : AnyObject]) -> [City : WeatherInfo] {
+        
+        var result = [City: WeatherInfo]()
+        
+        if let list = data["list"] as? NSArray {
+            
+            for c in list {
+                
+                guard let id = c[FirstLevelNames.Id.rawValue] as? Int else { return result }
+                
+                guard let weathers = c[FirstLevelNames.WeatherDesc.rawValue] as? NSArray else {return result}
+                
+                let descs: [String] = weathers.map(getWeatherDescription)
+                
+                var weatherDescription = descs.joinWithSeparator(", ")
+                
+                
+                if let city = City(rawValue: id){
+                    //parsing here
+
+                    var weatherInfo = WeatherInfo(description: weatherDescription)
+                    result[city] = weatherInfo
+
+                    if let common = c[FirstLevelNames.Common.rawValue] as? NSDictionary {
+                        if let sr = common[CommonNames.SunRise.rawValue] as? Double  {
+                            weatherInfo.sunrise = NSDate(timeIntervalSince1970: sr)
+                        }
+                        
+                        if let ss = common[CommonNames.SunSet.rawValue] as? Double {
+                            weatherInfo.sunset = NSDate(timeIntervalSince1970: ss)
+                        }
+                    }
+                    
+                    if let param = c[FirstLevelNames.Data.rawValue] as? NSDictionary {
+                        if let pressure = param[DataNames.Pressure.rawValue] as? Double {
+                            weatherInfo.pressure = pressure
+                        }
+                        
+                        if let temperature = param[DataNames.Temperature.rawValue] as? Double {
+                            weatherInfo.temperature = temperature
+                        }
+                    }
+                
+               }
+            }
+        }
+        
+        return result
+        
+    }
 }
