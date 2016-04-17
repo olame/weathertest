@@ -109,7 +109,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Cities" id="Zdf-7t-Un8">
-                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="7Hl-VE-sFr"/>
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="7Hl-VE-sFr">
+                            <connections>
+                                <action selector="refreshClicked:" destination="7bK-jq-Zjz" id="ePS-TI-5gy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>

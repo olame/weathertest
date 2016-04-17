@@ -10,19 +10,24 @@ import UIKit
 
 class CitiesViewController: UITableViewController {
 
+    @IBAction func refreshClicked(sender: AnyObject) {
+        
+        getWeatherData()
+    
+    }
     private var dataProvider: WeatherDataProviderProtocol?
     private var jsonParser: JsonParser?
     
     var detailViewController: WeatherInfoViewController? = nil
     var cities = [City.Moscow, City.SaintPetersburg, City.Astrakhan, City.Chelyabinsk, City.Cherepovets, City.Izhevsk, City.NizhniyNovgorod, City.RespublikaKareliya, City.Nakhodka, City.Taganrog]
     
-//    let weather: [City : WeatherInfo] = [City.Moscow : WeatherInfo(description: "The weather is beatiful"), City.SaintPetersburg: WeatherInfo(description: "Rainy"), City.Astrakhan: WeatherInfo(description: "Warm")]
     var weather: [City : WeatherInfo]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+
         //add cities here
         for _  in 1...cities.count {
             let indexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -43,20 +48,32 @@ class CitiesViewController: UITableViewController {
             jsonParser = JsonParser()
         }
         
+        getWeatherData()
+    }
+    
+    
+    private func getWeatherData(){
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("updating", object: nil)
+        weather = nil
+        
         dataProvider?.getCurrentWeather(cities){
             (result, status) in
             
             dispatch_async(dispatch_get_main_queue()){
                 switch status {
-                    case StatusCode.Success:
-                        self.weather = self.jsonParser?.getParsed(result!)
-                    case StatusCode.NoInternet:
-                        self.showAlert(UIMessages.NoInternetConnection.rawValue)
+                case StatusCode.Success:
+                    self.weather = self.jsonParser?.getParsed(result!)
                     
-                    case StatusCode.UnknownErorr:
-                        self.showAlert(UIMessages.UnknownError.rawValue)
+                    NSNotificationCenter.defaultCenter().postNotificationName("updated", object: nil)
                     
-                    default: break
+                case StatusCode.NoInternet:
+                    self.showAlert(UIMessages.NoInternetConnection.rawValue)
+                    
+                case StatusCode.UnknownErorr:
+                    self.showAlert(UIMessages.UnknownError.rawValue)
+                    
+                default: break
                 }
             }
         }
@@ -123,6 +140,8 @@ class CitiesViewController: UITableViewController {
         return true
     }
 
-
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }
 
